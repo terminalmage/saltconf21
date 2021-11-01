@@ -1,0 +1,36 @@
+# vim: ft=sls
+fiche:
+  fqdn: fichedemo.terminalmage.net
+  docker_buildroot: {{ '{}/docker-build'.format(salt.opts.cachedir) }}
+  ssl_dir: /root/ssl
+  web_root: /var/www/fiche
+
+  fiche_repo: https://github.com/solusipse/fiche
+  fiche_clone: /root/fiche
+
+  acme_repo: https://github.com/diafygi/acme-tiny
+  acme_clone: /root/acme-tiny
+  challenge_root: /var/www/letsencrypt
+  nginx_pid_file: /root/nginx.pid
+
+  volumes:
+    storage: fiche-storage
+    ssl: fiche-ssl
+
+  app:
+    container: fiche-app
+    image: terminalmage/fiche-app
+    tag: latest
+    storage: fiche-storage
+
+  letsencrypt:
+    container: fiche-letsencrypt
+    image: terminalmage/fiche-letsencrypt
+    tag: latest
+    storage: fiche-ssl
+
+  web:
+    container: fiche-web
+    image: terminalmage/fiche-web
+    tag: latest
+    storage: fiche-ssl

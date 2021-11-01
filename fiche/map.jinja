@@ -1,0 +1,3 @@
+# vim: ft=sls
+{%- import_yaml "fiche/defaults.yml" as defaults %}
+{%- set fiche = salt.slsutil.merge(defaults.fiche, salt.pillar.get("fiche", {})) %}
