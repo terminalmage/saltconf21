@@ -1,18 +1,13 @@
-reqs:
-  pkg.installed:
-    - pkgs:
-      - python3-pip
-      - docker.io
+{%- from "fiche/map.jinja" import fiche with context %}
 
 docker:
   pkg.installed:
-    - pkgs:
-      - python3-pip
-      - docker.io
+    - pkgs: {{ fiche.reqs | tojson }}
   service.running:
+    - name: {{ fiche.docker_service }}
     - enable: True
     - require:
       - pkg: docker
   pip.installed:
     - require:
-      - pkg: reqs
+      - pkg: docker

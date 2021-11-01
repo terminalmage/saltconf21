@@ -1,5 +1,11 @@
 # vim: ft=sls
 fiche:
+  reqs:
+    - python3-pip
+    - docker.io
+
+  docker_service: docker
+
   fqdn: fichedemo.terminalmage.net
   docker_buildroot: {{ '{}/docker-build'.format(salt.opts.cachedir) }}
   ssl_dir: /root/ssl
