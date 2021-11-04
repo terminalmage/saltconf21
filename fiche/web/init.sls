@@ -3,7 +3,7 @@
 
 include:
   - fiche.reqs
-  - fiche.volumes.storage
+  - fiche.volumes.pastes
   - fiche.volumes.ssl
 
 fiche-web:
@@ -26,10 +26,10 @@ fiche-web:
     - image: {{ fiche.web.image }}:{{ fiche.web.tag }}
     - port_bindings: 443:443
     - binds:
-      - {{ fiche.volumes.storage }}:{{ fiche.web_root }}:ro
+      - {{ fiche.volumes.pastes }}:{{ fiche.web_root }}:ro
       - {{ fiche.volumes.ssl }}:{{ fiche.ssl_dir }}:ro
     - require:
       - pip: docker
-      - docker_volume: {{ fiche.volumes.storage }}
+      - docker_volume: {{ fiche.volumes.pastes }}
     - watch:
       - docker_image: {{ fiche.web.image }}

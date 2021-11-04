@@ -20,23 +20,20 @@ fiche:
   nginx_pid_file: /root/nginx.pid
 
   volumes:
-    storage: fiche-storage
+    pastes: fiche-pastes
     ssl: fiche-ssl
 
   app:
     container: fiche-app
     image: terminalmage/fiche-app
     tag: latest
-    storage: fiche-storage
 
   letsencrypt:
     container: fiche-letsencrypt
     image: terminalmage/fiche-letsencrypt
     tag: latest
-    storage: fiche-ssl
 
   web:
     container: fiche-web
     image: terminalmage/fiche-web
     tag: latest
-    storage: fiche-ssl

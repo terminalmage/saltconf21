@@ -3,7 +3,7 @@
 
 include:
   - fiche.reqs
-  - fiche.volumes.storage
+  - fiche.volumes.pastes
 
 fiche-app:
   file.recurse:
@@ -25,9 +25,9 @@ fiche-app:
     - image: {{ fiche.app.image }}:{{ fiche.app.tag }}
     - port_bindings: 9999:9999
     - binds:
-      - {{ fiche.volumes.storage }}:{{ fiche.web_root }}:rw
+      - {{ fiche.volumes.pastes }}:{{ fiche.web_root }}:rw
     - require:
       - pip: docker
-      - docker_volume: {{ fiche.volumes.storage }}
+      - docker_volume: {{ fiche.volumes.pastes }}
     - watch:
       - docker_image: {{ fiche.app.image }}

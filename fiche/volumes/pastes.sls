@@ -1,7 +1,7 @@
 include:
   - fiche.reqs
 
-fiche-storage:
+fiche-pastes:
   docker_volume.present:
     - require:
       - pip: docker
